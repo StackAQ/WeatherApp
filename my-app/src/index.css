@@ -24,6 +24,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  animation: backgroundFade 5s infinite alternate;
 }
 
 a {
@@ -48,12 +49,14 @@ a:hover {
   align-items: center;
   flex-direction: column;
   gap: 20px;
+  animation: fadeIn 1s ease-in-out;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
   color: floralwhite;
+  animation: textGlow 2s infinite alternate;
 }
 
 input {
@@ -62,6 +65,11 @@ input {
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   width: 100%;
+  transition: box-shadow 0.3s ease;
+}
+input:focus {
+  box-shadow: 0 0 10px #646cff;
+  outline: none;
 }
 
 .get-btn {
@@ -91,10 +99,12 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 button:hover {
-  border-color: #646cff;
+  transform: scale(1.1);
+  background-color: #535bf2;
+  box-shadow: 0 4px 15px rgba(83, 91, 242, 0.5);
 }
 button:focus,
 button:focus-visible {
@@ -111,5 +121,76 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .weather-layout {
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  button {
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .weather-layout {
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  input {
+    padding: 8px;
+    font-size: 0.8em;
+  }
+
+  button {
+    padding: 0.4em 0.8em;
+    font-size: 0.8em;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes backgroundFade {
+  from {
+    filter: brightness(0.8);
+  }
+  to {
+    filter: brightness(1);
+  }
+}
+
+@keyframes textGlow {
+  from {
+    text-shadow: 0 0 10px #646cff, 0 0 20px #646cff, 0 0 30px #535bf2;
+  }
+  to {
+    text-shadow: 0 0 20px #535bf2, 0 0 30px #646cff, 0 0 40px #535bf2;
   }
 }
